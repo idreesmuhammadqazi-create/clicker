@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>clicker game</title>
+    </head>
+    <body>
+        <h1 style="text-align: center;">CLICKER GAME</h1>
+        <div style="display: flex; justify-content: space-between;">
+            <h1 style="flex: 1;">ACTIVE BUFFS</h1>
+            <button id="mybutton" style="text-align: center; font-size: 24px;">CLICK ME</button>
+            <h1 style="flex: 1; text-align: right;">SHOP</h1>
+        </div>
+       
+        <h4 style="text-align: center">your score is </h4>
+        <h3 id="myscore" style="text-align: center;">0</h3>
+        <h3 style="text-align: right;">cost = 10 score</h3>
+        <button id="shopitem1" style="text-align: right; display: block; margin: auto;">get +1 score per click</button>
+        <script>
+            let score = 0;
+            let spc = 1
+            const myscore = document.getElementById("myscore")
+            const mybutton = document.getElementById("mybutton")
+            const shopitem1 = document.getElementById("shopitem1")
+            function shopitem1clicked() {
+
+            }
+            function buttonclicked() {
+                console.log(score)
+                score=score+1;
+                myscore.textContent = score;
+            }
+            mybutton.addEventListener("click", buttonclicked);
+
+
+        </script>
+    </body>
+</html>
