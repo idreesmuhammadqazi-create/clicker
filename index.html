@@ -3,7 +3,7 @@
     <head>
         <title>clicker game</title>
     </head>
-    <body>
+    <body style="background-color: cadetblue;">
         <h1 style="text-align: center;">CLICKER GAME</h1>
         <div style="display: flex; justify-content: space-between;">
             <h1 style="flex: 1;">ACTIVE BUFFS</h1>
@@ -13,23 +13,106 @@
        
         <h4 style="text-align: center">your score is </h4>
         <h3 id="myscore" style="text-align: center;">0</h3>
-        <h3 style="text-align: right;">cost = 10 score</h3>
-        <button id="shopitem1" style="text-align: right; display: block; margin-left: auto;">get +1 score per click</button>
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <h3 style="text-align: left;">score per click is </h3><h3 id="scoreperclick">1</h3>
+                <h3 style="text-align: left;">score per second is </h3><h3 id="scorepersecond">0</h3>
+            </div>
+            <div>
+                <h3 style="text-align: right;" id="shopitem1text">cost = 10</h3>
+                <button id="shopitem1" style="text-align: right; display: block; margin-left: auto;">get +1 score per click</button>
+                <h3 style="text-align: right;" id="shopitem2text">cost = 50</h3>
+                <button id="shopitem2" style="text-align: right; display: block; margin-left: auto;">get +1 score per second</button>
+                <h3 style="text-align: right;" id="shopitem3text">cost = 250</h3>
+                <button id="shopitem3" style="text-align: right; display: block; margin-left: auto;">get +2 score per second and +4 score per click</button>
+            </div>
+        </div>
         <script>
             let score = 0;
-            let spc = 1
+            let spc = 1;
+            let sps = 0;
+            let shopitem1cost = 10;
+            let shopitem2cost = 50;
+            let shopitem3cost = 250;
+            const shopitem3text = document.getElementById("shopitem3text")
+            const shopitem2text = document.getElementById("shopitem2text")
+            const shopitem1text = document.getElementById("shopitem1text")
+            const scoreperclick = document.getElementById("scoreperclick")
+            const scorepersecond = document.getElementById("scorepersecond")
             const myscore = document.getElementById("myscore")
             const mybutton = document.getElementById("mybutton")
             const shopitem1 = document.getElementById("shopitem1")
+            const shopitem2 = document.getElementById("shopitem2")
+            const shopitem3 = document.getElementById("shopitem3")
             function shopitem1clicked() {
-
+                if (score >= shopitem1cost) {
+                    score -= shopitem1cost;
+                    spc += 1;
+                    shopitem1cost = Math.floor(shopitem1cost * 1.3)
+                    shopitem1text.textContent = "cost = " + shopitem1cost;
+                    myscore.textContent = score;
+                    scoreperclick.textContent = spc;
+                    updateshopbutton()
+                }   
+            }
+            function shopitem2clicked() {
+                if (score >= shopitem2cost) {
+                    score -= shopitem2cost;
+                    sps += 1;
+                    shopitem2cost = Math.floor(shopitem2cost * 1.3)
+                    shopitem2text.textContent = "cost = " + shopitem2cost;
+                    myscore.textContent = score;
+                    scorepersecond.textContent = sps;
+                    updateshopbutton()
+                }   
+            }
+            function shopitem3clicked() {
+                if (score >= shopitem3cost) {
+                    score -= shopitem3cost;
+                    sps += 2;
+                    spc += 4;
+                    shopitem3cost = Math.floor(shopitem3cost * 1.3)
+                    shopitem3text.textContent = "cost = " + shopitem3cost;
+                    myscore.textContent = score;
+                    scorepersecond.textContent = sps;
+                    scoreperclick.textContent = spc;
+                    updateshopbutton()
+                }   
             }
             function buttonclicked() {
                 console.log(score)
-                score=score+1;
+                score=score+spc;
                 myscore.textContent = score;
+                updateshopbutton()
             }
+            function addscore() {
+                score = score + sps;
+                myscore.textContent = score;
+                updateshopbutton()
+            }
+            function updateshopbutton() {
+                if (score >= shopitem1cost) {
+                    shopitem1.disabled = false;
+                } else {
+                    shopitem1.disabled = true;
+                }
+                if (score >= shopitem2cost) {
+                    shopitem2.disabled = false;
+                } else {
+                    shopitem2.disabled = true;
+                }
+                if (score >= shopitem3cost) {
+                    shopitem3.disabled = false;
+                } else {
+                    shopitem3.disabled = true;
+                }
+            }
+            setInterval(addscore, 1000);
+            
             mybutton.addEventListener("click", buttonclicked);
+            shopitem1.addEventListener("click", shopitem1clicked);
+            shopitem2.addEventListener("click", shopitem2clicked);
+            shopitem3.addEventListener("click", shopitem3clicked); 
 
 
         </script>
