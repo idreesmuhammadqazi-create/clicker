@@ -1,0 +1,38 @@
+#mybutton {
+    background: green ;
+    color:red ;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 30px 60px;
+    border: none;
+    border-radius: 15px;
+    
+}
+
+#mybutton:hover {
+    transform: scale(1.08);
+    background: lightgreen ;
+}
+
+#mybutton:active {
+    transform: scale(0.95);
+}
+
+#shopitem1, #shopitem2, #shopitem3 {
+    background: #2b3a4a;
+    color: #e0f0ff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    
+}
+
+#shopitem1:hover, #shopitem2:hover, #shopitem3:hover {
+    background: #39506a;
+    transform: scale(1.2);
+}
+
+#shopitem1:disabled, #shopitem2:disabled, #shopitem3:disabled {
+    background: #1c2732;
+    color: #5a6b7d;
+}
